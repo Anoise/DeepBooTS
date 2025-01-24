@@ -100,6 +100,9 @@ Then, you can run the bash script like this:
 
 
 ### 4) Training on Large-Scale Time Series Dataset
+
+**Download the Dataset**: The datasets can be obtained from [Google Drive](https://drive.google.com/drive/folders/1ClfRmgmTo8MRlutAEZyaTi5wwuyIhs4k?usp=sharing).
+
 Go to the directory "DeepBooTS/LargeScaleTimeSeriesDatasets", we'll find that the bash script is in the 'scripts' folder, then run the:
 
 ```shell
