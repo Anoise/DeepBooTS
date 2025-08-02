@@ -1,7 +1,7 @@
 import os
 import torch
 from model import Transformer, Informer, Reformer, Flowformer, Flashformer, \
-    iTransformer, DeepBooTS, DeepBooTS_Informer, DeepBooTS_Autoformer, DeepBooTS_Flowformer, DeepBooTS_Periodformer
+    iTransformer, DeepBooTS, DeepBooTS_Freq, DeepBooTS_Informer, DeepBooTS_Autoformer, DeepBooTS_Flowformer, DeepBooTS_Periodformer
 
 class Exp_Basic(object):
     def __init__(self, args):
@@ -14,6 +14,7 @@ class Exp_Basic(object):
             'Flashformer': Flashformer,
             'iTransformer': iTransformer,
             'DeepBooTS':DeepBooTS,
+            'DeepBooTS_Freq':DeepBooTS_Freq,
             'DeepBooTS_Informer': DeepBooTS_Informer,
             'DeepBooTS_Autoformer': DeepBooTS_Autoformer,
             'MDeepBooTS_Flowformer': DeepBooTS_Flowformer,

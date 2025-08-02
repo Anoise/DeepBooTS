@@ -23,8 +23,7 @@ from utils.metrics import metric, cumavg
 from data.rss_loader import LargeGraphDataset
 from models.lade import Lade, LadeOptimizer
 
-from models_offline import Informer, Autoformer, Transformer, DeepBooTS, PatchTST, FEDformer, \
-      Mvstgn, DLinear, Periodformer, PSLD, FreTS, FourierGNN
+from models_offline import Informer, Autoformer, Transformer, DeepBooTS, DeepBooTS_Freq, PatchTST, FEDformer, Mvstgn, DLinear, Periodformer, PSLD, FreTS, FourierGNN
 
 
 from models_offline.stid_arch import stid_arch
@@ -72,6 +71,7 @@ class Exp(Exp_Basic):
             'FreLinear': FreTS,
             'FourierGNN':FourierGNN,
             'DeepBooTS':DeepBooTS,
+            'DeepBooTS_Freq':DeepBooTS_Freq,
         }
         
         print('model= ', self.args.model)

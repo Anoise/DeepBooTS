@@ -1,21 +1,14 @@
 # DeepBooTS
 
-<!--The repo is the official implementation for the paper: [DeepBooTS: Improving Time Series Forecasting by Progressively Learning Residuals](https://arxiv.org/abs/2402.02332).
-
-Cited by [Awesome Time Series Forecasting/Prediction Papers](https://github.com/ddz16/TSFpaper); 
-[English Blog](); [Zhihu](https://zhuanlan.zhihu.com/p/703948963); [CSDN Blog](https://blog.csdn.net/liangdaojun/article/details/139748253)-->
-
 ## 1. Introduction
 
-In this paper, we find that ubiquitous time series (TS) forecasting models are prone to severe overfitting.
-  To cope with this, we first investigate the impact of deep ensembles on overfitting, analyzing it from a bias-variance perspective. 
-- We rigorously demonstrate that even simple ensemble methods are capable of reducing model variance while conserving bias. 
-- Building upon this, we propose a novel dual-stream residual-decreasing Boosting ensemble approach, termed DeepBooTS.
-- Then, we present an efficient implementation scheme. 
-  This designing facilitates the learning-driven implicit progressive decomposition of TS, empowering the model with heightened versatility, interpretability, and resilience against overfitting.
-- Extensive experiments, including those on large-scale datasets, show that the proposed method outperforms existing state-of-the-art methods by a large margin, yielding an average performance improvement of 11.9% across various datasets. 
+We analyse concept drift in time-series forecasting via bias-variance decomposition and introduce DeepBooTS, a dual-stream residual boosting architecture that reduces variance and dramatically improves forecast accuracy across diverse datasets. The key innovations are:
+- We rigorously analyze concept drift through the lens of the bias-variance trade-off and prove that even simple deep ensembles can substantially reduce prediction variance without increasing bias.
+- An efficient implementation of DeepBooTS is presented. Specifically, the outputs of subsequent blocks subtract the predictions of previous blocks, causing the network to explicitly model and reduce residual errors layer by layer. This residual‑learning mechanism is analogous to gradient boosting, but implemented within a deep network, enhancing robustness to distributional shifts.
+- A dual‑stream decomposition is designed that decomposes both the input and labels, enabling the model to learn complementary representations while enhancing model versatility and interpretability. 
+- Extensive experiments, including those on large-scale datasets, show that the proposed method outperforms existing state-of-the-art methods by a large margin, yielding an average performance improvement of 15.8% across various datasets. 
 
-<div align=center><img src="Images/performance.png" width="600"></div>
+<div align=center><img src="Images/performance.png"></div>
 
 ## 2. Contributions
 
@@ -29,12 +22,7 @@ In this paper, we find that ubiquitous time series (TS) forecasting models are p
 ### 1) Dataset 
 The datasets can be obtained from [Google Drive](https://drive.google.com/file/d/1l51QsKvQPcqILT3DwfjCgx8Dsg2rpjot/view?usp=drive_link) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/2ea5ca3d621e4e5ba36a/).
 
-### 2) Clone the code repository
-```git
-git clone git@github.com:Anoise/DeepBooTS.git
-```
-
-### 3) Training on Time Series Dataset
+### 2) Training on Time Series Dataset
 Go to the directory "DeepBooTS/CommanTimeSeriesDatasets", we'll find that the bash scripts are all in the 'scripts' folder, like this:
 
 ```
@@ -110,7 +98,7 @@ Go to the directory "DeepBooTS/LargeScaleTimeSeriesDatasets", we'll find that th
 ```
 
 Note that:
-- Model was trained with Python 3.7 with CUDA 11.2.
+- Model was trained with Python 3.10 with CUDA 12.4.
 - Model should work as expected with pytorch >= 1.12 support was recently included.
 
 ## 4. Performace on Multivariate Time Series
@@ -139,19 +127,19 @@ we evaluate the proposed method on 7 Monash TS datasets (e.g., NN5, M4 and Sunsp
 ## 7. On Large Time Series Datasets 
 
 The performance comparisons for large-scale TS datasets. For details on the large-scale TS datasets, including the CBS dataset with 4,454 nodes (17GB) and the Milano dataset with 10,000 nodes (19GB). Compared to the latest advanced PSLD, the proposed DeepBooTS yields an overall {\bf 8.9\%} and {\bf 6.2\%} MSE reduction on the CBS and Milano datasets, respectively.
-<div align=center><img src="Images/LS_TSF.png"></div>
+<div align=center><img src="Images/LargeTS2.jpg"></div>
 
 
 ## 8. Good Generality
 
 Ablation Studies of DeepBooTS with Various Attention. All results are averaged across all prediction lengths. The tick labels of the X-axis are the abbreviation of Attention types.
 
-<div align=center><img src="Images/other_attn.jpg"></div>
+<div align=center><img src="Images/other_attn.png"></div>
 
 
 ## 9. Very Effectiveness
 
-Ablation studies on various components of DeepBooTS. All results are averaged across all prediction lengths. The variables X and Y represent the input and output streams, while the signs ‘+’ and ‘-’ denote the addition or subtraction operations used when the streams’ aggregation. The letter ‘G’ denotes adding a gating mechanism to the output of each block.
+Ablation studies on various components of DeepBooTS. All results are averaged across all prediction lengths. The variables X and Y represent the input and output streams, while the signs ‘+' and ‘-' denote the addition or subtraction operations used when the streams' aggregation. The letter ‘G' denotes adding a gating mechanism to the output of each block.
 
 <div align=center><img src="Images/variates.jpg"></div>
 
@@ -163,10 +151,12 @@ Visualization depicting the output of each block in DeepBooTS. The experiment wa
 
 <div align=center><img src="Images/interpretable.jpg"></div>
 
-## 11. Go Deeper
 
-Given the DeepBooTS’s robustness against overfitting, it can be designed with considerable depth. Even with the DeepBooTS blocks deepened to 8
-or 16, it continues to exhibit excellent performance.
+## 11. Reduce Variance Go Deeper
 
-<div align=center><img src="Images/godeeper.png" width="400"></div>
+DeepBooTS achieves superior performance and the smallest prediction variance, while other models exhibit weaker alignment with ground truth and higher variance.
+
+Given the DeepBooTS's robustness against overfitting, it can be designed with considerable depth. Even with the DeepBooTS blocks deepened to 8 or 16, it continues to exhibit excellent performance.
+
+<div align=center><img src="Images/VisCI+GoDeeper.png"></div>
 
