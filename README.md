@@ -1,4 +1,4 @@
-# DeepBooTS
+# DeepBooTS (AAAI-26 Accepted!)
 
 ## 1. Introduction
 
