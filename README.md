@@ -6,7 +6,22 @@ We analyse concept drift in time-series forecasting via bias-variance decomposit
 - We rigorously analyze concept drift through the lens of the bias-variance trade-off and prove that even simple deep ensembles can substantially reduce prediction variance without increasing bias.
 - An efficient implementation of DeepBooTS is presented. Specifically, the outputs of subsequent blocks subtract the predictions of previous blocks, causing the network to explicitly model and reduce residual errors layer by layer. This residual‑learning mechanism is analogous to gradient boosting, but implemented within a deep network, enhancing robustness to distributional shifts.
 - A dual‑stream decomposition is designed that decomposes both the input and labels, enabling the model to learn complementary representations while enhancing model versatility and interpretability. 
-- Extensive experiments, including those on large-scale datasets, show that the proposed method outperforms existing state-of-the-art methods by a large margin, yielding an average performance improvement of 15.8% across various datasets. 
+- Extensive experiments, including those on large-scale datasets, show that the proposed method outperforms existing state-of-the-art methods by a large margin, yielding an average performance improvement of 15.8% across various datasets.
+
+
+## Citation
+
+```
+@misc{liang2025deepboots,
+      title={DeepBooTS: Dual-Stream Residual Boosting for Drift-Resilient Time-Series Forecasting}, 
+      author={Daojun Liang and Jing Chen and Xiao Wang and Yinglong Wang and Suo Li},
+      year={2025},
+      eprint={2511.06893},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2511.06893}, 
+}
+```
 
 <div align=center><img src="Images/performance.png"></div>
 
@@ -18,7 +33,7 @@ We analyse concept drift in time-series forecasting via bias-variance decomposit
 
 <div align=center><img src="Images/arch.png" width="600"></div>
 
-## 3. Training and Testing DeepBooTS
+## 3. Training and Testing DeepBooTS ✨
 ### 1) Dataset 
 The datasets can be obtained from [Google Drive](https://drive.google.com/file/d/1l51QsKvQPcqILT3DwfjCgx8Dsg2rpjot/view?usp=drive_link) or [Tsinghua Cloud](https://cloud.tsinghua.edu.cn/f/2ea5ca3d621e4e5ba36a/).
 
@@ -172,5 +187,5 @@ Given the DeepBooTS's robustness against overfitting, it can be designed with co
       primaryClass={cs.LG},
       url={https://arxiv.org/abs/2511.06893}, 
 }
-'''
+```
 
